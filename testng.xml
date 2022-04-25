@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" parallel="classes" >
+    <test verbose="2" preserve-order="true" name="C:/Users/snegv/IdeaProjects/com.demoWebShop">
+        <classes>
+            <class name="TestPage.RegistrationTest.Negative.ValidationRegistrationFieldTest">
+                <methods>
+                    <include name="RegistrationWithReusingEmail"/>
+                    <include name="RegistrationWithEmptyField"/>
+                    <include name="RegistrationWithSpaceOnNames"/>
+                    <include name="RegistrationWithOutEmail"/>
+                    <include name="RegistrationWithOutPassword"/>
+                    <include name="RegistrationWithScriptInjection"/>
+                </methods>
+            </class>
+            <class name="TestPage.RegistrationTest.Positive.StatesAndTransitionTest">
+                <methods>
+                    <include name="CheckConfirmDataAfterRegistration"/>
+                    <include name="LoginWithCorrectData"/>
+                </methods>
+            </class>
+            <class name="TestPage.RegistrationTest.Positive.ValidationRegistrationFieldTest">
+                <methods>
+                    <include name="RegistrationWithOutGender"/>
+                    <include name="RegistrationWithGenderFemale"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
