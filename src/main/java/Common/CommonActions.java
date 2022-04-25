@@ -32,7 +32,7 @@ public class CommonActions {
                         break;
             }
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(6));
         return driver;
 
     }
