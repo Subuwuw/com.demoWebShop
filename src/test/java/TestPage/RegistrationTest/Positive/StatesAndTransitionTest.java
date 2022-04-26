@@ -7,15 +7,12 @@ import org.junit.jupiter.api.Assertions;
 
 import org.openqa.selenium.By;
 
-
 import static Constants.Constants.*;
 import static Constants.PathOfSearch.XPATH_BUTTON_CONTIN_AFTER_REG;
-
 
 public class StatesAndTransitionTest extends BaseTest {
 
     public static final String xpathAccountMail = "//a[contains(text(),'" + BasePage.generatedEmailStatic + "')]";
-
 
     @Test(priority = 1,groups = {"smoke_tests"},description ="Регистрация и проверка отображения совпадения введеных данных")
     public void CheckConfirmDataAfterRegistration() {
@@ -29,14 +26,14 @@ public class StatesAndTransitionTest extends BaseTest {
                 .TypeById("ConfirmPassword", BasePage.generatedPassword)
                 .ClickById("register-button");
         Assertions.assertEquals(driver.getCurrentUrl(), COMPLATED_REG_PAGE);
-        basePage.AssertByXpath("Your registration completed", "//div[@class='result']");
+        basePage.AssertByXpathGetAtrText("Your registration completed", "//div[@class='result']");
         Assertions.assertTrue(driver.findElement(By.xpath(XPATH_BUTTON_CONTIN_AFTER_REG)).isDisplayed());
         basePage
-                .AssertByXpath(BasePage.generatedEmailStatic, statesAndTransition.myAccount)
-                .ClickByXpath(statesAndTransition.myAccount)
-                .AssertByxpathGetText(BasePage.generatedName, xpathFirstName)
-                .AssertByxpathGetText(BasePage.generatedLastName, xpathLastName)
-                .AssertByxpathGetText(BasePage.generatedEmailStatic, xpathEmail);
+                .AssertByXpathGetAtrText(BasePage.generatedEmailStatic, statesAndTransition.HeaderLinkMyMail)
+                .ClickByXpath(statesAndTransition.HeaderLinkMyMail)
+                .AssertByxpathGetAtrValue(BasePage.generatedName, xpathFirstName)
+                .AssertByxpathGetAtrValue(BasePage.generatedLastName, xpathLastName)
+                .AssertByxpathGetAtrValue(BasePage.generatedEmailStatic, xpathEmail);
     }
 
     @Test(priority = 2,dependsOnMethods = "CheckConfirmDataAfterRegistration",groups = {"smoke_tests"},description = "Вход с корректными данными")
@@ -46,7 +43,7 @@ public class StatesAndTransitionTest extends BaseTest {
                 .TypeById("Email", BasePage.generatedEmailStatic)
                 .TypeById("Password", BasePage.generatedPassword)
                 .ClickByXpath(xpathBtnLogin);
-        basePage.AssertByXpath(BasePage.generatedEmailStatic, xpathAccountMail);
+        basePage.AssertByXpathGetAtrText(BasePage.generatedEmailStatic, xpathAccountMail);
     }
 
     @Test(priority = 2,dependsOnMethods = "CheckConfirmDataAfterRegistration",description = "Вход без пароля, только с Email который зарегестрирован")
@@ -55,7 +52,7 @@ public class StatesAndTransitionTest extends BaseTest {
         basePage
                 .TypeById("Email",BasePage.generatedEmailStatic)
                 .ClickByXpath(xpathBtnLogin);
-        basePage.AssertByXpath("Login was unsuccessful. Please correct the errors and try again.\n" +
+        basePage.AssertByXpathGetAtrText("Login was unsuccessful. Please correct the errors and try again.\n" +
                 "The credentials provided are incorrect",xpathValidationSumError);
     }
 }

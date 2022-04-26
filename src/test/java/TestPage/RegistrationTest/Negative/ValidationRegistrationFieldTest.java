@@ -2,6 +2,7 @@ package TestPage.RegistrationTest.Negative;
 
 import Tests.Base.BaseTest;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayNameGeneration;
 import org.testng.annotations.Test;
 
 import static Constants.Constants.ERROR_PAGE;
@@ -22,7 +23,7 @@ public class ValidationRegistrationFieldTest extends BaseTest {
                 .TypeById("Password", "mstpassword")
                 .TypeById("ConfirmPassword", "mstpassword")
                 .ClickById("register-button")
-                .AssertByXpath("The specified email already exists",XPATH_SUMMARY_ERROR);
+                .AssertByXpathGetAtrText("The specified email already exists",XPATH_SUMMARY_ERROR);
     }
 
     @Test(description = "Регистрация с пустыми полями")
@@ -30,13 +31,12 @@ public class ValidationRegistrationFieldTest extends BaseTest {
         basePage.GoToUrl(REGISTRATION_PAGE);
         validationRegistrationField
                 .ClickById("register-button")
-                .AssertByXpath("First name is required.",XPATH_FIRST_NAME_FIELD_OF_REG)
-                .AssertByXpath("Last name is required.", XPATH_LAST_NAME_FIELD_OF_REG)
-                .AssertByXpath("Email is required.", XPATH_EMAIL_FIELD_OF_REG)
-                .AssertByXpath("Password is required.", XPATH_PASSWORD_FIELD_OF_REG)
-                .AssertByXpath("Password is required.", XPATH_CONFIRM_PASSWORD_FIELD_OF_REG);
+                .AssertByXpathGetAtrText("First name is required.",XPATH_FIRST_NAME_FIELD_OF_REG)
+                .AssertByXpathGetAtrText("Last name is required.", XPATH_LAST_NAME_FIELD_OF_REG)
+                .AssertByXpathGetAtrText("Email is required.", XPATH_EMAIL_FIELD_OF_REG)
+                .AssertByXpathGetAtrText("Password is required.", XPATH_PASSWORD_FIELD_OF_REG)
+                .AssertByXpathGetAtrText("Password is required.", XPATH_CONFIRM_PASSWORD_FIELD_OF_REG);
     }
-
     @Test(description = "Пустые/пробел в FirstName и LastName")
     public void RegistrationWithSpaceOnNames(){
         basePage.GoToUrl(REGISTRATION_PAGE);
@@ -47,8 +47,8 @@ public class ValidationRegistrationFieldTest extends BaseTest {
                 .TypeById("Password","1111111")
                 .TypeById("ConfirmPassword","1111111")
                 .ClickById("register-button")
-                .AssertByXpath("First name is required.",XPATH_FIRST_NAME_FIELD_OF_REG)
-                .AssertByXpath("Last name is required.",XPATH_LAST_NAME_FIELD_OF_REG);
+                .AssertByXpathGetAtrText("First name is required.",XPATH_FIRST_NAME_FIELD_OF_REG)
+                .AssertByXpathGetAtrText("Last name is required.",XPATH_LAST_NAME_FIELD_OF_REG);
     }
 
     @Test(description = "Рег. без Email")
@@ -60,7 +60,7 @@ public class ValidationRegistrationFieldTest extends BaseTest {
                 .TypeById("Password","1111111")
                 .TypeById("ConfirmPassword","1111111")
                 .ClickById("register-button")
-                .AssertByXpath("Email is required.",XPATH_EMAIL_FIELD_OF_REG);
+                .AssertByXpathGetAtrText("Email is required.",XPATH_EMAIL_FIELD_OF_REG);
     }
 
     @Test(description = "Рег. без пароля")
@@ -72,8 +72,8 @@ public class ValidationRegistrationFieldTest extends BaseTest {
                 .TypeById("Password","")
                 .TypeById("ConfirmPassword","")
                 .ClickById("register-button")
-                .AssertByXpath("Password is required.",XPATH_PASSWORD_FIELD_OF_REG)
-                .AssertByXpath("Password is required.", XPATH_CONFIRM_PASSWORD_FIELD_OF_REG);
+                .AssertByXpathGetAtrText("Password is required.",XPATH_PASSWORD_FIELD_OF_REG)
+                .AssertByXpathGetAtrText("Password is required.", XPATH_CONFIRM_PASSWORD_FIELD_OF_REG);
     }
 
     @Test(groups = "smoke_tests",description = "Регистр. с скриптами в базу")

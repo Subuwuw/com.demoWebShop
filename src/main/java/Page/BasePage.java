@@ -5,7 +5,6 @@ import net.bytebuddy.utility.RandomString;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -35,6 +34,7 @@ public class BasePage {
     /**Статическая Строка с Low+UpCases длиной 8 символов**/
      public static String generatedPassword = StringRandomize();
 
+    public String HeaderLinkMyMail = "(//a[@href='/customer/info'])[1]";
 
     /**Метод для перехода по url*/
     public String GoToUrl(String url){
@@ -47,7 +47,7 @@ public class BasePage {
         return session.nextString();
     }
     /**Преобразуем рандом символы в Email*/
-    private static String EmailRandomize() {
+    public static String EmailRandomize() {
         return StringRandomize().toLowerCase(Locale.ROOT) + "@test.test";
     }
     /**Поиск по xpath и клик по нему*/
@@ -69,7 +69,7 @@ public class BasePage {
     }
 
     /** Сравнивание Ожидаемого результата(текст) с текстом веб-эллемента с Атрибутом "outerText" **/
-    public BasePage AssertByXpath(String expected, String xpath){
+    public BasePage AssertByXpathGetAtrText(String expected, String xpath){
         Assertions.assertEquals(expected,driver.findElement(By.xpath(xpath)).getAttribute("outerText"));
         return this;
     }
@@ -81,14 +81,21 @@ public class BasePage {
         return this;
     }
     /**Сравнивание через ID*/
-    public BasePage AssertByxpathGetText(String expected, String xpath){
+    public BasePage AssertByxpathGetAtrValue(String expected, String xpath){
         Assertions.assertEquals(expected, driver.findElement(By.xpath(xpath)).getAttribute("value"));
         return this;
     }
 
-    public WebElement waitElement (WebElement element) {
-        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(element));
-        return element;
+    public BasePage AssertByXpathGetSize(int expectedINT, String xpath){
+        int countBox = driver.findElements(By.xpath(xpath)).size();
+        Assertions.assertEquals(expectedINT,countBox);
+        return this;
     }
+
+    public String waitElementByXpath (String xpath) {
+        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(xpath))));
+        return xpath;
+    }
+
 
 }

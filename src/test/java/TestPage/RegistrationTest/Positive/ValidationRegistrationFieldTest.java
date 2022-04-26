@@ -25,14 +25,14 @@ public class ValidationRegistrationFieldTest extends BaseTest {
                 .TypeById("ConfirmPassword", BasePage.generatedPassword)
                 .ClickById("register-button");
         Assertions.assertEquals(driver.getCurrentUrl(), COMPLATED_REG_PAGE);
-        basePage.AssertByXpath("Your registration completed", "//div[@class='result']");
+        basePage.AssertByXpathGetAtrText("Your registration completed", "//div[@class='result']");
         Assertions.assertTrue(driver.findElement(By.xpath(XPATH_BUTTON_CONTIN_AFTER_REG)).isDisplayed());
         basePage
-                .AssertByXpath(BasePage.getGeneratedEmailStaticTwo, statesAndTransition.myAccount)
-                .ClickByXpath(statesAndTransition.myAccount)
-                .AssertByxpathGetText(BasePage.generatedName, xpathFirstName)
-                .AssertByxpathGetText(BasePage.generatedLastName, xpathLastName)
-                .AssertByxpathGetText(BasePage.getGeneratedEmailStaticTwo, xpathEmail);
+                .AssertByXpathGetAtrText(BasePage.getGeneratedEmailStaticTwo, statesAndTransition.HeaderLinkMyMail)
+                .ClickByXpath(statesAndTransition.HeaderLinkMyMail)
+                .AssertByxpathGetAtrValue(BasePage.generatedName, xpathFirstName)
+                .AssertByxpathGetAtrValue(BasePage.generatedLastName, xpathLastName)
+                .AssertByxpathGetAtrValue(BasePage.getGeneratedEmailStaticTwo, xpathEmail);
     }
 
     @Test(groups = "smoke_tests",description = "Регистрация с корректными данными и Female гендер")
@@ -47,14 +47,14 @@ public class ValidationRegistrationFieldTest extends BaseTest {
                 .TypeById("ConfirmPassword", BasePage.generatedPassword)
                 .ClickById("register-button");
         Assertions.assertEquals(driver.getCurrentUrl(), COMPLATED_REG_PAGE);
-        basePage.AssertByXpath("Your registration completed", "//div[@class='result']");
+        basePage.AssertByXpathGetAtrText("Your registration completed", "//div[@class='result']");
         Assertions.assertTrue(driver.findElement(By.xpath(XPATH_BUTTON_CONTIN_AFTER_REG)).isDisplayed());
         basePage
-                .AssertByXpath(BasePage.getGeneratedEmailStaticThird, statesAndTransition.myAccount)
-                .ClickByXpath(statesAndTransition.myAccount)
-                .AssertByxpathGetText(BasePage.generatedName, xpathFirstName)
-                .AssertByxpathGetText(BasePage.generatedLastName, xpathLastName)
-                .AssertByxpathGetText(BasePage.getGeneratedEmailStaticThird, xpathEmail);
+                .AssertByXpathGetAtrText(BasePage.getGeneratedEmailStaticThird, statesAndTransition.HeaderLinkMyMail)
+                .ClickByXpath(statesAndTransition.HeaderLinkMyMail)
+                .AssertByxpathGetAtrValue(BasePage.generatedName, xpathFirstName)
+                .AssertByxpathGetAtrValue(BasePage.generatedLastName, xpathLastName)
+                .AssertByxpathGetAtrValue(BasePage.getGeneratedEmailStaticThird, xpathEmail);
     }
 
 
