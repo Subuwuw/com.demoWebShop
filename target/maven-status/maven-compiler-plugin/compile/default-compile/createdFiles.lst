@@ -1,0 +1,7 @@
+Constants\PathOfSearch.class
+Page\BasePage.class
+Page\Registration\ValidationRegistrationField.class
+Common\Config.class
+Page\StatesAndTransition\StatesAndTransition.class
+Constants\Constants.class
+Common\CommonActions.class

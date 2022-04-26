@@ -6,7 +6,10 @@ import Page.StatesAndTransition.StatesAndTransition;
 import Page.Registration.ValidationRegistrationField;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterClass;
+
+import static Constants.Constants.BROWSER_CLOSE;
+
 
 public class BaseTest {
 
@@ -16,11 +19,14 @@ public class BaseTest {
     protected ValidationRegistrationField validationRegistrationField = new ValidationRegistrationField(driver);
     protected StatesAndTransition statesAndTransition = new StatesAndTransition(driver);
 
-
-    @AfterTest
-    public void clo(){
-     driver.close();
+    @AfterClass
+    public void clo() {
+        if (BROWSER_CLOSE)
+        {
+            driver.close();
         }
+    }
+
 
 }
 

@@ -10,7 +10,8 @@ import static Constants.PathOfSearch.*;
 
 public class ValidationRegistrationFieldTest extends BaseTest {
 
-    @Test
+
+    @Test(groups = {"smoke_tests"},description = "Регистрация с уже использованными данными")
     public void RegistrationWithReusingEmail(){
         basePage.GoToUrl(REGISTRATION_PAGE);
         validationRegistrationField
@@ -24,7 +25,7 @@ public class ValidationRegistrationFieldTest extends BaseTest {
                 .AssertByXpath("The specified email already exists",XPATH_SUMMARY_ERROR);
     }
 
-    @Test
+    @Test(description = "Регистрация с пустыми полями")
     public void RegistrationWithEmptyField(){
         basePage.GoToUrl(REGISTRATION_PAGE);
         validationRegistrationField
@@ -36,7 +37,7 @@ public class ValidationRegistrationFieldTest extends BaseTest {
                 .AssertByXpath("Password is required.", XPATH_CONFIRM_PASSWORD_FIELD_OF_REG);
     }
 
-    @Test
+    @Test(description = "Пустые/пробел в FirstName и LastName")
     public void RegistrationWithSpaceOnNames(){
         basePage.GoToUrl(REGISTRATION_PAGE);
         validationRegistrationField
@@ -50,7 +51,7 @@ public class ValidationRegistrationFieldTest extends BaseTest {
                 .AssertByXpath("Last name is required.",XPATH_LAST_NAME_FIELD_OF_REG);
     }
 
-    @Test
+    @Test(description = "Рег. без Email")
     public void RegistrationWithOutEmail(){
         basePage.GoToUrl(REGISTRATION_PAGE);
         validationRegistrationField
@@ -62,7 +63,7 @@ public class ValidationRegistrationFieldTest extends BaseTest {
                 .AssertByXpath("Email is required.",XPATH_EMAIL_FIELD_OF_REG);
     }
 
-    @Test
+    @Test(description = "Рег. без пароля")
     public void RegistrationWithOutPassword(){
         basePage.GoToUrl(REGISTRATION_PAGE);
         validationRegistrationField
@@ -75,7 +76,7 @@ public class ValidationRegistrationFieldTest extends BaseTest {
                 .AssertByXpath("Password is required.", XPATH_CONFIRM_PASSWORD_FIELD_OF_REG);
     }
 
-    @Test
+    @Test(groups = "smoke_tests",description = "Регистр. с скриптами в базу")
     public void RegistrationWithScriptInjection(){
         basePage.GoToUrl(REGISTRATION_PAGE);
         validationRegistrationField

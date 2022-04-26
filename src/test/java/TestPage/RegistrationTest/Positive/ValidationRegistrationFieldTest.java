@@ -13,7 +13,8 @@ import static Constants.PathOfSearch.*;
 
 public class ValidationRegistrationFieldTest extends BaseTest {
 
-    @Test
+
+    @Test(description = "Регистрация с корректными данными и без гендера")
     public void RegistrationWithOutGender(){
         basePage.GoToUrl(REGISTRATION_PAGE);
         basePage
@@ -34,7 +35,7 @@ public class ValidationRegistrationFieldTest extends BaseTest {
                 .AssertByxpathGetText(BasePage.getGeneratedEmailStaticTwo, xpathEmail);
     }
 
-    @Test
+    @Test(groups = "smoke_tests",description = "Регистрация с корректными данными и Female гендер")
     public void RegistrationWithGenderFemale(){
         basePage.GoToUrl(REGISTRATION_PAGE);
         basePage

@@ -17,7 +17,7 @@ public class StatesAndTransitionTest extends BaseTest {
     public static final String xpathAccountMail = "//a[contains(text(),'" + BasePage.generatedEmailStatic + "')]";
 
 
-    @Test
+    @Test(priority = 1,groups = {"smoke_tests"},description ="Регистрация и проверка отображения совпадения введеных данных")
     public void CheckConfirmDataAfterRegistration() {
         basePage.GoToUrl(REGISTRATION_PAGE);
         basePage
@@ -39,7 +39,7 @@ public class StatesAndTransitionTest extends BaseTest {
                 .AssertByxpathGetText(BasePage.generatedEmailStatic, xpathEmail);
     }
 
-    @Test
+    @Test(priority = 2,dependsOnMethods = "CheckConfirmDataAfterRegistration",groups = {"smoke_tests"},description = "Вход с корректными данными")
     public void LoginWithCorrectData() {
         basePage.GoToUrl(LOG_IN_PAGE);
         basePage
@@ -47,8 +47,16 @@ public class StatesAndTransitionTest extends BaseTest {
                 .TypeById("Password", BasePage.generatedPassword)
                 .ClickByXpath(xpathBtnLogin);
         basePage.AssertByXpath(BasePage.generatedEmailStatic, xpathAccountMail);
-        System.out.println("C:\\Users\\snegv\\IdeaProjects\\com.demoWebShop\\target\\surefire-reports");
     }
 
+    @Test(priority = 2,dependsOnMethods = "CheckConfirmDataAfterRegistration",description = "Вход без пароля, только с Email который зарегестрирован")
+    public void LoginOnlyWithMail(){
+        basePage.GoToUrl(LOG_IN_PAGE);
+        basePage
+                .TypeById("Email",BasePage.generatedEmailStatic)
+                .ClickByXpath(xpathBtnLogin);
+        basePage.AssertByXpath("Login was unsuccessful. Please correct the errors and try again.\n" +
+                "The credentials provided are incorrect",xpathValidationSumError);
+    }
 }
 
