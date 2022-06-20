@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" parallel="classes" name="C:/Users/snegv/IdeaProjects/com.demoWebShop">
+        <classes>
+            <class name="TestPage.RegistrationTest.Negative.ValidationRegistrationFieldTest"/>
+            <class name="TestPage.RegistrationTest.Positive.StatesAndTransitionTest"/>
+            <class name="TestPage.RegistrationTest.Positive.ValidationRegistrationFieldTest"/>
+            <class name="TestPage.RegistrationTest.Positive.PurchaseStatesTest"/>
+        </classes>
+    </test>
+</suite>

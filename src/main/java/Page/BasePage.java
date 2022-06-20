@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.annotation.Nullable;
 import java.time.Duration;
 import java.util.Locale;
 
@@ -50,6 +51,7 @@ public class BasePage {
     public static String EmailRandomize() {
         return StringRandomize().toLowerCase(Locale.ROOT) + "@test.test";
     }
+
     /**Поиск по xpath и клик по нему*/
     public BasePage ClickByXpath(String xpath){
         driver.findElement(By.xpath(xpath)).click();
@@ -69,6 +71,10 @@ public class BasePage {
     }
 
     /** Сравнивание Ожидаемого результата(текст) с текстом веб-эллемента с Атрибутом "outerText" **/
+    public BasePage AssertByXpathGetAtrText(String expected, String xpath, String msg){
+        Assertions.assertEquals(expected,driver.findElement(By.xpath(xpath)).getAttribute("outerText"),msg);
+        return this;
+    }
     public BasePage AssertByXpathGetAtrText(String expected, String xpath){
         Assertions.assertEquals(expected,driver.findElement(By.xpath(xpath)).getAttribute("outerText"));
         return this;
@@ -96,6 +102,10 @@ public class BasePage {
         new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(xpath))));
         return xpath;
     }
-
+    public String WaitElemWhenAtrToBe(String xpath, String attribbute,String value){
+        new WebDriverWait(driver,Duration.ofSeconds(10)).until(ExpectedConditions.attributeToBe(By.xpath(xpath),attribbute,value));
+        return xpath;
+    }
+    public static String randomizeNumber = faker.address().zipCode();
 
 }

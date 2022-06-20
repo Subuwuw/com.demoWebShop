@@ -20,7 +20,7 @@ public class BaseTest {
     protected StatesAndTransition statesAndTransition = new StatesAndTransition(driver);
 
     @AfterClass
-    public void clo() {
+    public void close() {
         if (BROWSER_CLOSE)
         {
             driver.close();

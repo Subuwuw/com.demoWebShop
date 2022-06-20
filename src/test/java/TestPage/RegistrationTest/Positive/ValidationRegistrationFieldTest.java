@@ -25,7 +25,7 @@ public class ValidationRegistrationFieldTest extends BaseTest {
                 .TypeById("ConfirmPassword", BasePage.generatedPassword)
                 .ClickById("register-button");
         Assertions.assertEquals(driver.getCurrentUrl(), COMPLATED_REG_PAGE);
-        basePage.AssertByXpathGetAtrText("Your registration completed", "//div[@class='result']");
+        basePage.AssertByXpathGetAtrText("Your registration completed", "//div[@class='result']", "text");
         Assertions.assertTrue(driver.findElement(By.xpath(XPATH_BUTTON_CONTIN_AFTER_REG)).isDisplayed());
         basePage
                 .AssertByXpathGetAtrText(BasePage.getGeneratedEmailStaticTwo, statesAndTransition.HeaderLinkMyMail)
