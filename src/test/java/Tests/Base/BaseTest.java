@@ -19,13 +19,13 @@ public class BaseTest {
     protected ValidationRegistrationField validationRegistrationField = new ValidationRegistrationField(driver);
     protected StatesAndTransition statesAndTransition = new StatesAndTransition(driver);
 
-    @AfterClass
-    public void close() {
-        if (BROWSER_CLOSE)
-        {
-            driver.close();
-        }
-    }
+//    @AfterClass
+//    public void close() {
+//        if (BROWSER_CLOSE)
+//        {
+//            driver.close();
+//        }
+//    }
 
 
 }

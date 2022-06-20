@@ -29,12 +29,13 @@ public class PurchaseStatesTest extends BaseTest {
                     .TypeById("ConfirmPassword", generatedPassword)
                     .ClickById("register-button");
             basePage.AssertByXpathGetAtrText(StaticRandomMail, basePage.HeaderLinkMyMail);
+            basePage.getCoockie("NOPCOMMERCE.AUTH");
         }
 
-        @Test(groups = {"Critical_Path"},description = "Добавление в корзину, проверка появления Bar-notification")
+        @Test(dependsOnMethods ="RegistrationForPurchase",groups = {"Critical_Path"},description = "Добавление в корзину, проверка появления Bar-notification")
          public void AdditemToCartAndPurchase(){
             basePage.GoToUrl(HOME_PAGE);
-            driver.manage().addCookie(new Cookie("NOPCOMMERCE.AUTH",setCoockie));
+            driver.manage().addCookie(new Cookie("NOPCOMMERCE.AUTH",basePage.setterCoockie));
             driver.navigate().refresh();
             //проверка количества продуктов на домашней странице
             basePage.AssertByXpathGetSize( 6,"//div[@class='item-box']");

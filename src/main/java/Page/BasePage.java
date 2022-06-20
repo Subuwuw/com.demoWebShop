@@ -37,10 +37,16 @@ public class BasePage {
 
     public String HeaderLinkMyMail = "(//a[@href='/customer/info'])[1]";
 
+    public String setterCoockie;
+
     /**Метод для перехода по url*/
     public String GoToUrl(String url){
         driver.get(url);
         return url;
+    }
+
+    public void getCoockie(String value){
+        setterCoockie = driver.manage().getCookieNamed(value).getValue();
     }
     /**Метод для рандомизации символов(8 букв)*/
     private static String StringRandomize(){
