@@ -1,2 +1,3 @@
 # com.demoWebShop
-10 First Test
+Когда-то я обязательно добавлю описание.
+Запускать файлом testng.xml
